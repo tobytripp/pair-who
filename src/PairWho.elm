@@ -87,7 +87,11 @@ update msg model =
                         , newPerson = ""
                     }
             in
-            ( m, save (toJson m) )
+            if model.newPerson == "" then
+                ( model, Cmd.none )
+
+            else
+                ( m, save (toJson m) )
 
         RemovePerson p ->
             let
