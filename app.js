@@ -6024,7 +6024,7 @@ var $author$project$PairWho$update = F2(
 								_List_fromArray(
 									[model.newPerson])))
 					});
-				return _Utils_Tuple2(
+				return (model.newPerson === '') ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					m,
 					$author$project$PairWho$save(
 						$author$project$PairWho$toJson(m)));
