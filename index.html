@@ -17,7 +17,10 @@
      });
 
      app.ports.doload.subscribe(function() {
-       app.ports.load.send(localStorage.getItem(storageKey));
+       var value = localStorage.getItem(storageKey);
+       if (value) {
+         app.ports.load.send( value );
+       }
      });
     </script>
   </body>
