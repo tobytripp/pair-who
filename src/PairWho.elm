@@ -42,12 +42,12 @@ view model =
 
 
 viewMob : List String -> Html Msg
-viewMob mobs =
+viewMob mob =
     let
         viewMember name =
             li [] [ text name ]
     in
-    ul [] (List.map viewMember mobs)
+    ul [] (List.map viewMember mob)
 
 
 viewPerson : String -> Html Msg
