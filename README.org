@@ -1,0 +1,7 @@
+* Pair Who?
+
+Really just a playground for me to ploy with Elm.  Also splits teams into mobs randomly and, eventually, pairs.
+
+It is also planned to provide a ladder for mob/pair history
+
+https://tobytripp.github.io/pair-who/
