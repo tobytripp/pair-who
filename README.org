@@ -2,6 +2,6 @@
 
 Really just a playground for me to play with Elm.  Also splits teams into mobs randomly and, eventually, pairs.
 
-It is also planned to provide a ladder for mob/pair history
+It is also planned to provide a ladder for mob/pair history.
 
-https://tobytripp.github.io/pair-who/
+Play with it here: https://tobytripp.github.io/pair-who/
