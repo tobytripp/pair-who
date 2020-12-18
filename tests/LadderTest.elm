@@ -6,11 +6,6 @@ import Ladder
 import Test exposing (..)
 
 
-suite : Test
-suite =
-    test "one plus one equals two" (\_ -> Expect.equal 2 (1 + 1))
-
-
 initTest : Test
 initTest =
     test "Initializing a Ladder gives all zeroes" <|
@@ -20,3 +15,17 @@ initTest =
                     Ladder.init [ "Person1", "Person2" ]
             in
             Expect.equal 0 (Ladder.get "Person1" "Person2" l)
+
+
+incrementTest : Test
+incrementTest =
+    test "increment adds one to an empty cell" <|
+        \_ ->
+            let
+                l =
+                    Ladder.init [ "p1", "p2" ]
+
+                l2 =
+                    Ladder.increment "p1" "p2" l
+            in
+            Expect.equal 1 (Ladder.get "p1" "p2" l2)
