@@ -6173,7 +6173,7 @@ var $author$project$PairWho$viewInput = F4(
 			_List_Nil);
 	});
 var $elm$html$Html$li = _VirtualDom_node('li');
-var $author$project$PairWho$viewMob = function (mobs) {
+var $author$project$PairWho$viewMob = function (mob) {
 	var viewMember = function (name) {
 		return A2(
 			$elm$html$Html$li,
@@ -6186,7 +6186,7 @@ var $author$project$PairWho$viewMob = function (mobs) {
 	return A2(
 		$elm$html$Html$ul,
 		_List_Nil,
-		A2($elm$core$List$map, viewMember, mobs));
+		A2($elm$core$List$map, viewMember, mob));
 };
 var $author$project$PairWho$RemovePerson = function (a) {
 	return {$: 'RemovePerson', a: a};
