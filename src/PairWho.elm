@@ -1,4 +1,4 @@
-port module PairWho exposing (main)
+port module PairWho exposing (Model, Msg(..), empty, init, main, update, view)
 
 import Browser
 import Html exposing (Html, button, input, li, section, text, ul)
@@ -15,6 +15,13 @@ type alias Model =
     { newPerson : String
     , mobs : List (List String)
     , people : List String
+    }
+
+
+empty =
+    { newPerson = ""
+    , mobs = []
+    , people = []
     }
 
 
@@ -164,10 +171,15 @@ initialCmd =
     Task.succeed DoLoad |> Task.perform identity
 
 
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( initialModel, initialCmd )
+
+
 main : Program () Model Msg
 main =
     Browser.element
-        { init = \_ -> ( initialModel, initialCmd )
+        { init = init
         , view = view
         , update = update
         , subscriptions = subscriptions
