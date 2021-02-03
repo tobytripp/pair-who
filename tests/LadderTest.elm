@@ -112,4 +112,13 @@ viewTest =
                     |> Query.findAll [ tag "th" ]
                     |> Query.first
                     |> Query.has [ text "p1" ]
+        , test "puts the count in a td" <|
+            \_ ->
+                Ladder.init []
+                    |> Ladder.mob [ "p1", "p2" ]
+                    |> Ladder.view
+                    |> Query.fromHtml
+                    |> Query.findAll [ tag "td" ]
+                    |> Query.first
+                    |> Query.has [ text "1" ]
         ]
