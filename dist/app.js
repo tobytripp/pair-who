@@ -6155,6 +6155,8 @@ var $author$project$Main$GotLadderMessage = function (a) {
 };
 var $elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
 var $elm$html$Html$map = $elm$virtual_dom$VirtualDom$map;
+var $elm$html$Html$h2 = _VirtualDom_node('h2');
+var $elm$html$Html$section = _VirtualDom_node('section');
 var $elm$html$Html$table = _VirtualDom_node('table');
 var $author$project$Ladder$map = F2(
 	function (f, l) {
@@ -6225,12 +6227,25 @@ var $author$project$Ladder$tableBody = function (model) {
 var $elm$html$Html$thead = _VirtualDom_node('thead');
 var $author$project$Ladder$view = function (model) {
 	return A2(
-		$elm$html$Html$table,
+		$elm$html$Html$section,
 		_List_Nil,
 		_List_fromArray(
 			[
-				A2($elm$html$Html$thead, _List_Nil, _List_Nil),
-				$author$project$Ladder$tableBody(model)
+				A2(
+				$elm$html$Html$h2,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Ladder')
+					])),
+				A2(
+				$elm$html$Html$table,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$thead, _List_Nil, _List_Nil),
+						$author$project$Ladder$tableBody(model)
+					]))
 			]));
 };
 var $author$project$Main$ladder = function (model) {
@@ -6294,7 +6309,6 @@ var $elm$html$Html$Events$onSubmit = function (msg) {
 			$elm$html$Html$Events$alwaysPreventDefault,
 			$elm$json$Json$Decode$succeed(msg)));
 };
-var $elm$html$Html$section = _VirtualDom_node('section');
 var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$html$Html$Events$alwaysStop = function (x) {
@@ -6412,6 +6426,13 @@ var $author$project$PairWho$view = function (model) {
 		_List_Nil,
 		_List_fromArray(
 			[
+				A2(
+				$elm$html$Html$h2,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text('People')
+					])),
 				A2(
 				$elm$html$Html$ul,
 				_List_fromArray(

@@ -1,7 +1,7 @@
 module Ladder exposing (Ladder, Msg, get, getRow, increment, init, map, mob, view)
 
 import Dict exposing (Dict)
-import Html exposing (Html, table, tbody, td, text, th, thead, tr)
+import Html exposing (Html, h2, section, table, tbody, td, text, th, thead, tr)
 
 
 type alias Row =
@@ -18,9 +18,12 @@ type Msg
 
 view : Ladder -> Html msg
 view model =
-    table []
-        [ thead [] []
-        , tableBody model
+    section []
+        [ h2 [] [ text "Ladder" ]
+        , table []
+            [ thead [] []
+            , tableBody model
+            ]
         ]
 
 

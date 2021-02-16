@@ -1,7 +1,7 @@
 port module PairWho exposing (Model, Msg(..), empty, init, main, update, view)
 
 import Browser
-import Html exposing (Html, button, input, li, p, section, text, ul)
+import Html exposing (Html, button, h2, input, li, p, section, text, ul)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import Json.Decode as Decode exposing (Decoder, field, int, list, string)
@@ -38,7 +38,8 @@ type Msg
 view : Model -> Html Msg
 view model =
     section []
-        [ ul [ class "people" ] (List.map viewPerson model.people)
+        [ h2 [] [ text "People" ]
+        , ul [ class "people" ] (List.map viewPerson model.people)
         , Html.form [ onSubmit AddPerson ]
             [ viewInput "text" "Name" model.newPerson NewPerson
             , button [ onClick AddPerson ] [ text "Add" ]
