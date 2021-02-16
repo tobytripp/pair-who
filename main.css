@@ -1,0 +1,45 @@
+section, footer {
+   padding: 0 2em;
+}
+
+.button, button {
+   display: inline-block;
+   border-radius: 3px;
+   padding: 7px 12px;
+   border: 1px solid #D5D5D5;
+   background-image: linear-gradient(#EEE, #DDD);
+   font: 700 13px/18px Helvetica, arial;
+}
+.button-act {
+   color: #FFF;
+   background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
+   border-color: #4A993E;
+}
+.button-danger {
+   color: #900;
+}
+.button-small {
+   padding: 0 0.5em;
+}
+
+.people {
+   list-style-type: none;
+   margin: 0;
+   padding: 0 1em;
+}
+.people-group {
+   border: 1px solid #D5D5D5;
+   margin: 1em 0;
+}
+.person-name {
+   display: inline-block;
+   min-width: 20em;
+   margin: 0;
+   padding: 0;
+}
+
+input {
+   padding: 7px 12px;
+   margin: 0;
+   min-width: 20em;
+}
