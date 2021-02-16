@@ -2,6 +2,7 @@ port module Main exposing (main)
 
 import Browser exposing (Document)
 import Html exposing (Html, footer, h1, text)
+import Ladder
 import PairWho
 
 
