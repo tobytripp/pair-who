@@ -1,4 +1,4 @@
-module Ladder exposing (get, getRow, increment, init, map, mob, view)
+module Ladder exposing (Ladder, Msg, get, getRow, increment, init, map, mob, view)
 
 import Dict exposing (Dict)
 import Html exposing (Html, table, tbody, td, text, th, thead, tr)
@@ -10,6 +10,10 @@ type alias Row =
 
 type alias Ladder =
     Dict String Row
+
+
+type Msg
+    = None
 
 
 view : Ladder -> Html msg

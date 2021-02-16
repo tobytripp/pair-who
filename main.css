@@ -1,8 +1,14 @@
+body {
+   font-family: Helvetica, Arial, sans-serif;
+   padding: 4em 2em;
+   margin: 0;
+}
+
 section, footer {
    padding: 0 2em;
 }
 
-.button, button {
+button {
    display: inline-block;
    border-radius: 3px;
    padding: 7px 12px;
@@ -10,10 +16,16 @@ section, footer {
    background-image: linear-gradient(#EEE, #DDD);
    font: 700 13px/18px Helvetica, arial;
 }
+button:active {
+   background-image: linear-gradient(#DDD, #EEE);
+}
 .button-act {
    color: #FFF;
    background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
    border-color: #4A993E;
+}
+.button-act:active {
+   background: #569E3D linear-gradient(#569E3D, #79D858) repeat-x;
 }
 .button-danger {
    color: #900;
@@ -29,6 +41,7 @@ section, footer {
 }
 .people-group {
    border: 1px solid #D5D5D5;
+   border-radius: 3px;
    margin: 1em 0;
 }
 .person-name {
@@ -40,6 +53,10 @@ section, footer {
 
 input {
    padding: 7px 12px;
-   margin: 0;
+   margin: 0 2em 0 1em;
    min-width: 20em;
+}
+
+table {
+   margin: 1em 2em;
 }

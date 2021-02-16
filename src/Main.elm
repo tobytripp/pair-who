@@ -7,7 +7,9 @@ import PairWho
 
 
 type alias Model =
-    { pair : PairWho.Model }
+    { pair : PairWho.Model
+    , ladder : Ladder.Ladder
+    }
 
 
 view : Model -> Document Msg
@@ -15,7 +17,8 @@ view model =
     { title = "Mob Randomizer"
     , body =
         [ viewHeader
-        , content model
+        , selection model
+        , ladder model
         , viewFooter
         ]
     }
@@ -26,10 +29,16 @@ viewHeader =
     h1 [] [ text "Mob Randomizer" ]
 
 
-content : Model -> Html Msg
-content model =
+selection : Model -> Html Msg
+selection model =
     PairWho.view model.pair
         |> Html.map GotPairWhoMessage
+
+
+ladder : Model -> Html Msg
+ladder model =
+    Ladder.view model.ladder
+        |> Html.map GotLadderMessage
 
 
 viewFooter : Html Msg
@@ -39,6 +48,7 @@ viewFooter =
 
 type Msg
     = GotPairWhoMessage PairWho.Msg
+    | GotLadderMessage Ladder.Msg
     | Load String
 
 
@@ -47,6 +57,9 @@ update msg model =
     case msg of
         GotPairWhoMessage pairMsg ->
             fromPair model (PairWho.update pairMsg model.pair)
+
+        GotLadderMessage ladderMsg ->
+            ( model, Cmd.none )
 
         Load value ->
             fromPair model (PairWho.update (PairWho.Load value) model.pair)
@@ -73,7 +86,11 @@ port doload : () -> Cmd msg
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    PairWho.init () |> fromPair { pair = PairWho.empty }
+    PairWho.init ()
+        |> fromPair
+            { pair = PairWho.empty
+            , ladder = Ladder.init [ "Foo", "Bar", "Baz" ]
+            }
 
 
 main : Program () Model Msg
