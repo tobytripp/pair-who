@@ -1,7 +1,7 @@
 port module PairWho exposing (Model, Msg(..), empty, init, main, update, view)
 
 import Browser
-import Html exposing (Html, button, input, li, section, text, ul)
+import Html exposing (Html, button, input, li, p, section, text, ul)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import Json.Decode as Decode exposing (Decoder, field, int, list, string)
@@ -38,12 +38,16 @@ type Msg
 view : Model -> Html Msg
 view model =
     section []
-        [ ul [] (List.map viewPerson model.people)
+        [ ul [ class "people" ] (List.map viewPerson model.people)
         , Html.form [ onSubmit AddPerson ]
             [ viewInput "text" "Name" model.newPerson NewPerson
             , button [ onClick AddPerson ] [ text "Add" ]
             ]
-        , button [ onClick Shuffle ] [ text "2 Mobs" ]
+        , button
+            [ class "button-act"
+            , onClick Shuffle
+            ]
+            [ text "2 Mobs" ]
         , Html.div [] (List.map viewMob model.mobs)
         ]
 
@@ -52,16 +56,20 @@ viewMob : List String -> Html Msg
 viewMob mob =
     let
         viewMember name =
-            li [] [ text name ]
+            li [] [ p [ class "person-name" ] [ text name ] ]
     in
-    ul [] (List.map viewMember mob)
+    ul [ class "people people-group" ] (List.map viewMember mob)
 
 
 viewPerson : String -> Html Msg
 viewPerson name =
     li []
-        [ text name
-        , button [ onClick (RemovePerson name) ] [ text "-" ]
+        [ p [ class "person-name" ] [ text name ]
+        , button
+            [ class "button button-danger button-small"
+            , onClick (RemovePerson name)
+            ]
+            [ text "-" ]
         ]
 
 
