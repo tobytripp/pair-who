@@ -1,4 +1,4 @@
-port module PairWho exposing (Model, Msg(..), empty, init, main, update, view)
+port module People exposing (Model, Msg(..), empty, init, main, update, view)
 
 import Browser
 import Html exposing (Html, button, h2, input, li, p, section, text, ul)

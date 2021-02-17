@@ -3,11 +3,11 @@ port module Main exposing (main)
 import Browser exposing (Document)
 import Html exposing (Html, footer, h1, text)
 import Ladder
-import PairWho
+import People
 
 
 type alias Model =
-    { pair : PairWho.Model
+    { pair : People.Model
     , ladder : Ladder.Ladder
     }
 
@@ -31,8 +31,8 @@ viewHeader =
 
 selection : Model -> Html Msg
 selection model =
-    PairWho.view model.pair
-        |> Html.map GotPairWhoMessage
+    People.view model.pair
+        |> Html.map GotPeopleMessage
 
 
 ladder : Model -> Html Msg
@@ -47,7 +47,7 @@ viewFooter =
 
 
 type Msg
-    = GotPairWhoMessage PairWho.Msg
+    = GotPeopleMessage People.Msg
     | GotLadderMessage Ladder.Msg
     | Load String
 
@@ -55,19 +55,19 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        GotPairWhoMessage pairMsg ->
-            fromPair model (PairWho.update pairMsg model.pair)
+        GotPeopleMessage pairMsg ->
+            fromPair model (People.update pairMsg model.pair)
 
         GotLadderMessage ladderMsg ->
             ( model, Cmd.none )
 
         Load value ->
-            fromPair model (PairWho.update (PairWho.Load value) model.pair)
+            fromPair model (People.update (People.Load value) model.pair)
 
 
-fromPair : Model -> ( PairWho.Model, Cmd PairWho.Msg ) -> ( Model, Cmd Msg )
+fromPair : Model -> ( People.Model, Cmd People.Msg ) -> ( Model, Cmd Msg )
 fromPair model ( pairModel, cmd ) =
-    ( { model | pair = pairModel }, Cmd.map GotPairWhoMessage cmd )
+    ( { model | pair = pairModel }, Cmd.map GotPeopleMessage cmd )
 
 
 subscriptions : Model -> Sub Msg
@@ -86,9 +86,9 @@ port doload : () -> Cmd msg
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    PairWho.init ()
+    People.init ()
         |> fromPair
-            { pair = PairWho.empty
+            { pair = People.empty
             , ladder = Ladder.init [ "Foo", "Bar", "Baz" ]
             }
 

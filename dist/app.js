@@ -5227,9 +5227,9 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$document = _Browser_document;
-var $author$project$PairWho$empty = {mobs: _List_Nil, newPerson: '', people: _List_Nil};
-var $author$project$Main$GotPairWhoMessage = function (a) {
-	return {$: 'GotPairWhoMessage', a: a};
+var $author$project$People$empty = {mobs: _List_Nil, newPerson: '', people: _List_Nil};
+var $author$project$Main$GotPeopleMessage = function (a) {
+	return {$: 'GotPeopleMessage', a: a};
 };
 var $elm$core$Platform$Cmd$map = _Platform_map;
 var $author$project$Main$fromPair = F2(
@@ -5240,7 +5240,7 @@ var $author$project$Main$fromPair = F2(
 			_Utils_update(
 				model,
 				{pair: pairModel}),
-			A2($elm$core$Platform$Cmd$map, $author$project$Main$GotPairWhoMessage, cmd));
+			A2($elm$core$Platform$Cmd$map, $author$project$Main$GotPeopleMessage, cmd));
 	});
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
@@ -5382,18 +5382,18 @@ var $author$project$Ladder$init = function (names) {
 		names);
 	return $elm$core$Dict$fromList(l2);
 };
-var $author$project$PairWho$DoLoad = {$: 'DoLoad'};
-var $author$project$PairWho$initialCmd = A2(
+var $author$project$People$DoLoad = {$: 'DoLoad'};
+var $author$project$People$initialCmd = A2(
 	$elm$core$Task$perform,
 	$elm$core$Basics$identity,
-	$elm$core$Task$succeed($author$project$PairWho$DoLoad));
-var $author$project$PairWho$Model = F3(
+	$elm$core$Task$succeed($author$project$People$DoLoad));
+var $author$project$People$Model = F3(
 	function (newPerson, mobs, people) {
 		return {mobs: mobs, newPerson: newPerson, people: people};
 	});
-var $author$project$PairWho$initialModel = A3($author$project$PairWho$Model, '', _List_Nil, _List_Nil);
-var $author$project$PairWho$init = function (_v0) {
-	return _Utils_Tuple2($author$project$PairWho$initialModel, $author$project$PairWho$initialCmd);
+var $author$project$People$initialModel = A3($author$project$People$Model, '', _List_Nil, _List_Nil);
+var $author$project$People$init = function (_v0) {
+	return _Utils_Tuple2($author$project$People$initialModel, $author$project$People$initialCmd);
 };
 var $author$project$Main$init = function (_v0) {
 	return A2(
@@ -5402,9 +5402,9 @@ var $author$project$Main$init = function (_v0) {
 			ladder: $author$project$Ladder$init(
 				_List_fromArray(
 					['Foo', 'Bar', 'Baz'])),
-			pair: $author$project$PairWho$empty
+			pair: $author$project$People$empty
 		},
-		$author$project$PairWho$init(_Utils_Tuple0));
+		$author$project$People$init(_Utils_Tuple0));
 };
 var $author$project$Main$Load = function (a) {
 	return {$: 'Load', a: a};
@@ -5414,16 +5414,16 @@ var $author$project$Main$load = _Platform_incomingPort('load', $elm$json$Json$De
 var $author$project$Main$subscriptions = function (model) {
 	return $author$project$Main$load($author$project$Main$Load);
 };
-var $author$project$PairWho$Load = function (a) {
+var $author$project$People$Load = function (a) {
 	return {$: 'Load', a: a};
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $author$project$PairWho$NewMobs = function (a) {
+var $author$project$People$NewMobs = function (a) {
 	return {$: 'NewMobs', a: a};
 };
 var $elm$json$Json$Encode$null = _Json_encodeNull;
-var $author$project$PairWho$doload = _Platform_outgoingPort(
+var $author$project$People$doload = _Platform_outgoingPort(
 	'doload',
 	function ($) {
 		return $elm$json$Json$Encode$null;
@@ -5463,10 +5463,10 @@ var $elm$core$List$filter = F2(
 var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$json$Json$Decode$field = _Json_decodeField;
 var $elm$json$Json$Decode$list = _Json_decodeList;
-var $author$project$PairWho$modelDecoder = A2(
+var $author$project$People$modelDecoder = A2(
 	$elm$json$Json$Decode$map,
 	A2(
-		$author$project$PairWho$Model,
+		$author$project$People$Model,
 		'',
 		_List_fromArray(
 			[_List_Nil])),
@@ -5474,10 +5474,10 @@ var $author$project$PairWho$modelDecoder = A2(
 		$elm$json$Json$Decode$field,
 		'people',
 		$elm$json$Json$Decode$list($elm$json$Json$Decode$string)));
-var $author$project$PairWho$fromJson = function (string) {
-	var _v0 = A2($elm$json$Json$Decode$decodeString, $author$project$PairWho$modelDecoder, string);
+var $author$project$People$fromJson = function (string) {
+	var _v0 = A2($elm$json$Json$Decode$decodeString, $author$project$People$modelDecoder, string);
 	if (_v0.$ === 'Err') {
-		return $author$project$PairWho$initialModel;
+		return $author$project$People$initialModel;
 	} else {
 		var val = _v0.a;
 		return val;
@@ -5592,7 +5592,7 @@ var $elm$random$Random$generate = F2(
 	});
 var $elm$core$Basics$neq = _Utils_notEqual;
 var $elm$json$Json$Encode$string = _Json_wrap;
-var $author$project$PairWho$save = _Platform_outgoingPort('save', $elm$json$Json$Encode$string);
+var $author$project$People$save = _Platform_outgoingPort('save', $elm$json$Json$Encode$string);
 var $elm$core$Array$fromListHelp = F3(
 	function (list, nodeList, nodeListSize) {
 		fromListHelp:
@@ -6043,7 +6043,7 @@ var $elm$json$Json$Encode$object = function (pairs) {
 			_Json_emptyObject(_Utils_Tuple0),
 			pairs));
 };
-var $author$project$PairWho$toJson = function (model) {
+var $author$project$People$toJson = function (model) {
 	return A2(
 		$elm$json$Json$Encode$encode,
 		2,
@@ -6055,17 +6055,17 @@ var $author$project$PairWho$toJson = function (model) {
 					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, model.people))
 				])));
 };
-var $author$project$PairWho$update = F2(
+var $author$project$People$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
 			case 'DoLoad':
 				return _Utils_Tuple2(
 					model,
-					$author$project$PairWho$doload(_Utils_Tuple0));
+					$author$project$People$doload(_Utils_Tuple0));
 			case 'Load':
 				var value = msg.a;
 				return _Utils_Tuple2(
-					$author$project$PairWho$fromJson(value),
+					$author$project$People$fromJson(value),
 					$elm$core$Platform$Cmd$none);
 			case 'NewPerson':
 				var value = msg.a;
@@ -6087,8 +6087,8 @@ var $author$project$PairWho$update = F2(
 					});
 				return (model.newPerson === '') ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					m,
-					$author$project$PairWho$save(
-						$author$project$PairWho$toJson(m)));
+					$author$project$People$save(
+						$author$project$People$toJson(m)));
 			case 'RemovePerson':
 				var p = msg.a;
 				var m = _Utils_update(
@@ -6103,14 +6103,14 @@ var $author$project$PairWho$update = F2(
 					});
 				return _Utils_Tuple2(
 					m,
-					$author$project$PairWho$save(
-						$author$project$PairWho$toJson(m)));
+					$author$project$People$save(
+						$author$project$People$toJson(m)));
 			case 'Shuffle':
 				return _Utils_Tuple2(
 					model,
 					A2(
 						$elm$random$Random$generate,
-						$author$project$PairWho$NewMobs,
+						$author$project$People$NewMobs,
 						$elm_community$random_extra$Random$List$shuffle(model.people)));
 			default:
 				var l = msg.a;
@@ -6130,12 +6130,12 @@ var $author$project$PairWho$update = F2(
 var $author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
-			case 'GotPairWhoMessage':
+			case 'GotPeopleMessage':
 				var pairMsg = msg.a;
 				return A2(
 					$author$project$Main$fromPair,
 					model,
-					A2($author$project$PairWho$update, pairMsg, model.pair));
+					A2($author$project$People$update, pairMsg, model.pair));
 			case 'GotLadderMessage':
 				var ladderMsg = msg.a;
 				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
@@ -6145,8 +6145,8 @@ var $author$project$Main$update = F2(
 					$author$project$Main$fromPair,
 					model,
 					A2(
-						$author$project$PairWho$update,
-						$author$project$PairWho$Load(value),
+						$author$project$People$update,
+						$author$project$People$Load(value),
 						model.pair));
 		}
 	});
@@ -6254,11 +6254,11 @@ var $author$project$Main$ladder = function (model) {
 		$author$project$Main$GotLadderMessage,
 		$author$project$Ladder$view(model.ladder));
 };
-var $author$project$PairWho$AddPerson = {$: 'AddPerson'};
-var $author$project$PairWho$NewPerson = function (a) {
+var $author$project$People$AddPerson = {$: 'AddPerson'};
+var $author$project$People$NewPerson = function (a) {
 	return {$: 'NewPerson', a: a};
 };
-var $author$project$PairWho$Shuffle = {$: 'Shuffle'};
+var $author$project$People$Shuffle = {$: 'Shuffle'};
 var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -6345,7 +6345,7 @@ var $elm$html$Html$Events$onInput = function (tagger) {
 var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
-var $author$project$PairWho$viewInput = F4(
+var $author$project$People$viewInput = F4(
 	function (t, p, v, toMsg) {
 		return A2(
 			$elm$html$Html$input,
@@ -6360,7 +6360,7 @@ var $author$project$PairWho$viewInput = F4(
 	});
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$html$Html$p = _VirtualDom_node('p');
-var $author$project$PairWho$viewMob = function (mob) {
+var $author$project$People$viewMob = function (mob) {
 	var viewMember = function (name) {
 		return A2(
 			$elm$html$Html$li,
@@ -6387,10 +6387,10 @@ var $author$project$PairWho$viewMob = function (mob) {
 			]),
 		A2($elm$core$List$map, viewMember, mob));
 };
-var $author$project$PairWho$RemovePerson = function (a) {
+var $author$project$People$RemovePerson = function (a) {
 	return {$: 'RemovePerson', a: a};
 };
-var $author$project$PairWho$viewPerson = function (name) {
+var $author$project$People$viewPerson = function (name) {
 	return A2(
 		$elm$html$Html$li,
 		_List_Nil,
@@ -6412,7 +6412,7 @@ var $author$project$PairWho$viewPerson = function (name) {
 					[
 						$elm$html$Html$Attributes$class('button button-danger button-small'),
 						$elm$html$Html$Events$onClick(
-						$author$project$PairWho$RemovePerson(name))
+						$author$project$People$RemovePerson(name))
 					]),
 				_List_fromArray(
 					[
@@ -6420,7 +6420,7 @@ var $author$project$PairWho$viewPerson = function (name) {
 					]))
 			]));
 };
-var $author$project$PairWho$view = function (model) {
+var $author$project$People$view = function (model) {
 	return A2(
 		$elm$html$Html$section,
 		_List_Nil,
@@ -6439,21 +6439,21 @@ var $author$project$PairWho$view = function (model) {
 					[
 						$elm$html$Html$Attributes$class('people')
 					]),
-				A2($elm$core$List$map, $author$project$PairWho$viewPerson, model.people)),
+				A2($elm$core$List$map, $author$project$People$viewPerson, model.people)),
 				A2(
 				$elm$html$Html$form,
 				_List_fromArray(
 					[
-						$elm$html$Html$Events$onSubmit($author$project$PairWho$AddPerson)
+						$elm$html$Html$Events$onSubmit($author$project$People$AddPerson)
 					]),
 				_List_fromArray(
 					[
-						A4($author$project$PairWho$viewInput, 'text', 'Name', model.newPerson, $author$project$PairWho$NewPerson),
+						A4($author$project$People$viewInput, 'text', 'Name', model.newPerson, $author$project$People$NewPerson),
 						A2(
 						$elm$html$Html$button,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onClick($author$project$PairWho$AddPerson)
+								$elm$html$Html$Events$onClick($author$project$People$AddPerson)
 							]),
 						_List_fromArray(
 							[
@@ -6465,7 +6465,7 @@ var $author$project$PairWho$view = function (model) {
 				_List_fromArray(
 					[
 						$elm$html$Html$Attributes$class('button-act'),
-						$elm$html$Html$Events$onClick($author$project$PairWho$Shuffle)
+						$elm$html$Html$Events$onClick($author$project$People$Shuffle)
 					]),
 				_List_fromArray(
 					[
@@ -6474,14 +6474,14 @@ var $author$project$PairWho$view = function (model) {
 				A2(
 				$elm$html$Html$div,
 				_List_Nil,
-				A2($elm$core$List$map, $author$project$PairWho$viewMob, model.mobs))
+				A2($elm$core$List$map, $author$project$People$viewMob, model.mobs))
 			]));
 };
 var $author$project$Main$selection = function (model) {
 	return A2(
 		$elm$html$Html$map,
-		$author$project$Main$GotPairWhoMessage,
-		$author$project$PairWho$view(model.pair));
+		$author$project$Main$GotPeopleMessage,
+		$author$project$People$view(model.pair));
 };
 var $elm$html$Html$footer = _VirtualDom_node('footer');
 var $author$project$Main$viewFooter = A2(
