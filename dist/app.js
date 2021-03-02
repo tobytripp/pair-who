@@ -5383,10 +5383,13 @@ var $author$project$Ladder$init = function (names) {
 	return $elm$core$Dict$fromList(l2);
 };
 var $author$project$People$DoLoad = {$: 'DoLoad'};
-var $author$project$People$initialCmd = A2(
-	$elm$core$Task$perform,
-	$elm$core$Basics$identity,
-	$elm$core$Task$succeed($author$project$People$DoLoad));
+var $author$project$People$send = function (msg) {
+	return A2(
+		$elm$core$Task$perform,
+		$elm$core$Basics$identity,
+		$elm$core$Task$succeed(msg));
+};
+var $author$project$People$initialCmd = $author$project$People$send($author$project$People$DoLoad);
 var $author$project$People$Model = F3(
 	function (newPerson, mobs, people) {
 		return {mobs: mobs, newPerson: newPerson, people: people};
@@ -5417,8 +5420,106 @@ var $author$project$Main$subscriptions = function (model) {
 var $author$project$People$Load = function (a) {
 	return {$: 'Load', a: a};
 };
+var $elm$core$Dict$get = F2(
+	function (targetKey, dict) {
+		get:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
+				switch (_v1.$) {
+					case 'LT':
+						var $temp$targetKey = targetKey,
+							$temp$dict = left;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+					case 'EQ':
+						return $elm$core$Maybe$Just(value);
+					default:
+						var $temp$targetKey = targetKey,
+							$temp$dict = right;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+				}
+			}
+		}
+	});
+var $author$project$Ladder$getRow = F2(
+	function (n, r) {
+		var _v0 = A2($elm$core$Dict$get, n, r);
+		if (_v0.$ === 'Just') {
+			var v = _v0.a;
+			return v;
+		} else {
+			return 0;
+		}
+	});
+var $author$project$Ladder$get = F3(
+	function (n1, n2, l) {
+		var _v0 = A2($elm$core$Dict$get, n1, l);
+		if (_v0.$ === 'Just') {
+			var r = _v0.a;
+			return A2($author$project$Ladder$getRow, n2, r);
+		} else {
+			return 0;
+		}
+	});
+var $author$project$Ladder$insert = F4(
+	function (n1, n2, v, l) {
+		var values = function () {
+			var _v0 = A2($elm$core$Dict$get, n1, l);
+			if (_v0.$ === 'Just') {
+				var d = _v0.a;
+				return d;
+			} else {
+				return $elm$core$Dict$empty;
+			}
+		}();
+		return A3(
+			$elm$core$Dict$insert,
+			n1,
+			A3($elm$core$Dict$insert, n2, v, values),
+			l);
+	});
+var $author$project$Ladder$increment = F3(
+	function (n1, n2, l) {
+		var value = A3($author$project$Ladder$get, n1, n2, l);
+		return A4($author$project$Ladder$insert, n1, n2, value + 1, l);
+	});
+var $author$project$Ladder$mob = F2(
+	function (names, l) {
+		if (!names.b) {
+			return l;
+		} else {
+			if (!names.b.b) {
+				var n = names.a;
+				return A4($author$project$Ladder$insert, n, n, 0, l);
+			} else {
+				var n = names.a;
+				var ns = names.b;
+				return A2(
+					$author$project$Ladder$mob,
+					ns,
+					A3(
+						$elm$core$List$foldl,
+						$author$project$Ladder$increment(n),
+						l,
+						ns));
+			}
+		}
+	});
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$People$MobChange = function (a) {
+	return {$: 'MobChange', a: a};
+};
 var $author$project$People$NewMobs = function (a) {
 	return {$: 'NewMobs', a: a};
 };
@@ -5703,37 +5804,6 @@ var $elm$random$Random$list = F2(
 			function (seed) {
 				return A4($elm$random$Random$listHelp, _List_Nil, n, gen, seed);
 			});
-	});
-var $elm$core$Dict$get = F2(
-	function (targetKey, dict) {
-		get:
-		while (true) {
-			if (dict.$ === 'RBEmpty_elm_builtin') {
-				return $elm$core$Maybe$Nothing;
-			} else {
-				var key = dict.b;
-				var value = dict.c;
-				var left = dict.d;
-				var right = dict.e;
-				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
-				switch (_v1.$) {
-					case 'LT':
-						var $temp$targetKey = targetKey,
-							$temp$dict = left;
-						targetKey = $temp$targetKey;
-						dict = $temp$dict;
-						continue get;
-					case 'EQ':
-						return $elm$core$Maybe$Just(value);
-					default:
-						var $temp$targetKey = targetKey,
-							$temp$dict = right;
-						targetKey = $temp$targetKey;
-						dict = $temp$dict;
-						continue get;
-				}
-			}
-		}
 	});
 var $owanturist$elm_union_find$UnionFind$findFast = F2(
 	function (id, dict) {
@@ -6112,7 +6182,7 @@ var $author$project$People$update = F2(
 						$elm$random$Random$generate,
 						$author$project$People$NewMobs,
 						$elm_community$random_extra$Random$List$shuffle(model.people)));
-			default:
+			case 'NewMobs':
 				var l = msg.a;
 				var len = ($elm$core$List$length(l) / 2) | 0;
 				var b = A2($elm$core$List$drop, len, l);
@@ -6124,18 +6194,35 @@ var $author$project$People$update = F2(
 							mobs: _List_fromArray(
 								[a, b])
 						}),
-					$elm$core$Platform$Cmd$none);
+					$author$project$People$send(
+						$author$project$People$MobChange(
+							_List_fromArray(
+								[a, b]))));
+			default:
+				var mobs = msg.a;
+				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 		}
 	});
 var $author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
 			case 'GotPeopleMessage':
-				var pairMsg = msg.a;
-				return A2(
-					$author$project$Main$fromPair,
-					model,
-					A2($author$project$People$update, pairMsg, model.pair));
+				if (msg.a.$ === 'MobChange') {
+					var mobs = msg.a.a;
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{
+								ladder: A3($elm$core$List$foldl, $author$project$Ladder$mob, model.ladder, mobs)
+							}),
+						$elm$core$Platform$Cmd$none);
+				} else {
+					var pairMsg = msg.a;
+					return A2(
+						$author$project$Main$fromPair,
+						model,
+						A2($author$project$People$update, pairMsg, model.pair));
+				}
 			case 'GotLadderMessage':
 				var ladderMsg = msg.a;
 				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
