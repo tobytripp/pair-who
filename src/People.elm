@@ -25,6 +25,14 @@ empty =
     }
 
 
+type alias Mob =
+    List String
+
+
+type alias Mobs =
+    List Mob
+
+
 type Msg
     = DoLoad
     | Load String
@@ -33,6 +41,7 @@ type Msg
     | RemovePerson String
     | Shuffle
     | NewMobs (List String)
+    | MobChange Mobs
 
 
 view : Model -> Html Msg
@@ -132,7 +141,16 @@ update msg model =
                 b =
                     List.drop len l
             in
-            ( { model | mobs = [ a, b ] }, Cmd.none )
+            ( { model | mobs = [ a, b ] }, send <| MobChange [ a, b ] )
+
+        MobChange mobs ->
+            ( model, Cmd.none )
+
+
+send : msg -> Cmd msg
+send msg =
+    Task.succeed msg
+        |> Task.perform identity
 
 
 toJson : Model -> String
@@ -177,7 +195,7 @@ initialModel =
 
 
 initialCmd =
-    Task.succeed DoLoad |> Task.perform identity
+    send DoLoad
 
 
 init : () -> ( Model, Cmd Msg )

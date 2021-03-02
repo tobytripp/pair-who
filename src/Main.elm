@@ -55,6 +55,11 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        GotPeopleMessage (People.MobChange mobs) ->
+            ( { model | ladder = List.foldl Ladder.mob model.ladder mobs }
+            , Cmd.none
+            )
+
         GotPeopleMessage pairMsg ->
             fromPair model (People.update pairMsg model.pair)
 
