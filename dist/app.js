@@ -5402,9 +5402,7 @@ var $author$project$Main$init = function (_v0) {
 	return A2(
 		$author$project$Main$fromPair,
 		{
-			ladder: $author$project$Ladder$init(
-				_List_fromArray(
-					['Foo', 'Bar', 'Baz'])),
+			ladder: $author$project$Ladder$init(_List_Nil),
 			pair: $author$project$People$empty
 		},
 		$author$project$People$init(_Utils_Tuple0));
@@ -6312,6 +6310,33 @@ var $author$project$Ladder$tableBody = function (model) {
 		A2($author$project$Ladder$map, $author$project$Ladder$tableRow, model));
 };
 var $elm$html$Html$thead = _VirtualDom_node('thead');
+var $author$project$Ladder$tableHead = function (model) {
+	var cell = function (v) {
+		return A2(
+			$elm$html$Html$th,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(v)
+				]));
+	};
+	return A2(
+		$elm$html$Html$thead,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$tr,
+				_List_Nil,
+				A2(
+					$elm$core$List$map,
+					cell,
+					A2(
+						$elm$core$List$cons,
+						'',
+						$elm$core$Dict$keys(model))))
+			]));
+};
 var $author$project$Ladder$view = function (model) {
 	return A2(
 		$elm$html$Html$section,
@@ -6330,7 +6355,7 @@ var $author$project$Ladder$view = function (model) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						A2($elm$html$Html$thead, _List_Nil, _List_Nil),
+						$author$project$Ladder$tableHead(model),
 						$author$project$Ladder$tableBody(model)
 					]))
 			]));
