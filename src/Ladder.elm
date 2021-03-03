@@ -21,10 +21,19 @@ view model =
     section []
         [ h2 [] [ text "Ladder" ]
         , table []
-            [ thead [] []
+            [ tableHead model
             , tableBody model
             ]
         ]
+
+
+tableHead : Ladder -> Html msg
+tableHead model =
+    let
+        cell v =
+            th [] [ text v ]
+    in
+    thead [] [ tr [] <| List.map cell ("" :: Dict.keys model) ]
 
 
 tableBody : Ladder -> Html msg

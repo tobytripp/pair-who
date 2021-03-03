@@ -102,15 +102,13 @@ viewTest =
                     |> Ladder.view
                     |> Query.fromHtml
                     |> Query.findAll [ tag "tr" ]
-                    |> Query.count (Expect.equal 3)
+                    |> Query.count (Expect.equal 4)
         , test "puts the participant's name in a th tag" <|
             \_ ->
                 Ladder.init []
                     |> Ladder.mob [ "p1", "p2", "p3" ]
                     |> Ladder.view
                     |> Query.fromHtml
-                    |> Query.findAll [ tag "th" ]
-                    |> Query.first
                     |> Query.has [ text "p1" ]
         , test "puts the count in a td" <|
             \_ ->

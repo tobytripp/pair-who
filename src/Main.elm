@@ -94,7 +94,7 @@ init _ =
     People.init ()
         |> fromPair
             { pair = People.empty
-            , ladder = Ladder.init [ "Foo", "Bar", "Baz" ]
+            , ladder = Ladder.init []
             }
 
 
