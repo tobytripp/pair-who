@@ -23,6 +23,7 @@ button:active {
    color: #FFF;
    background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
    border-color: #4A993E;
+   margin: 1rem;
 }
 .button-act:active {
    background: #569E3D linear-gradient(#569E3D, #79D858) repeat-x;
